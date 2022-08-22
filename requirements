@@ -1,0 +1,5 @@
+pip install torch==1.8.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+pip install torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+pip install argparse
+pip install numpy
+pip install spikingjelly==0.0.0.0.8
