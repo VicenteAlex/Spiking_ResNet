@@ -13,6 +13,7 @@ if __name__ == '__main__':
 
     # Parse input arguments
     parser = argparse.ArgumentParser(description='Test S-ResNet', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--data_folder',           default='data', type=str, help='Folder for saving data')
     parser.add_argument('--model_path', type=str,   help='path to model')
     parser.add_argument('--arch',  type=str, help='architecture used by the model')
     parser.add_argument('--n',                     default=6, type=int, help='Depth scaling of the S-ResNet')
@@ -50,13 +51,13 @@ if __name__ == '__main__':
         num_cls = 10
         img_size = 32
 
-        test_set = torchvision.datasets.CIFAR10(root='./data', train=False,
+        test_set = torchvision.datasets.CIFAR10(root=args.data_folder, train=False,
                                                 download=True, transform=transform_test)
     elif args.dataset == 'cifar100':
         num_cls = 100
         img_size = 32
 
-        test_set = torchvision.datasets.CIFAR100(root='./data', train=False,
+        test_set = torchvision.datasets.CIFAR100(root=args.data_folder, train=False,
                                                 download=True, transform=transform_test)
 
     elif args.dataset == 'cifar10dvs':
