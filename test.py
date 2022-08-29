@@ -13,11 +13,12 @@ if __name__ == '__main__':
 
     # Parse input arguments
     parser = argparse.ArgumentParser(description='Test S-ResNet', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--model_path', type=str, help='path to model')
     parser.add_argument('--data_folder',           default='data', type=str, help='Folder for saving data')
-    parser.add_argument('--model_path', type=str,   help='path to model')
-    parser.add_argument('--arch',  type=str, help='architecture used by the model')
+    parser.add_argument('--arch',                  default='sresnet', type=str, help='architecture used by the model')
     parser.add_argument('--n',                     default=6, type=int, help='Depth scaling of the S-ResNet')
     parser.add_argument('--nFilters',              default=32, type=int, help='Width scaling of the S-ResNet')
+    parser.add_argument('--boosting',              default=False, action='store_true', help='Use boosting layer')
     parser.add_argument('--dataset', default='cifar100', type=str, help='Dataset [cifar10, cifar100, cifar10dvs]')
     parser.add_argument('--batch_size',            default=500,       type=int,   help='Batch size')
     parser.add_argument('--num_steps',             default=50,    type=int, help='Number of time-step')
@@ -134,7 +135,7 @@ if __name__ == '__main__':
 
     if args.arch == 'sresnet':
         model = SResnet(n=args.n, nFilters=args.nFilters, num_steps=num_steps, leak_mem=leak_mem, img_size=img_size, num_cls=num_cls,
-                               poisson_gen=args.poisson_gen)
+                        boosting=args.boosting, poisson_gen=args.poisson_gen)
     elif args.arch == 'sresnet_nm':
         model = SResnetNM(n=args.n, nFilters=args.nFilters, num_steps=num_steps, leak_mem=leak_mem, img_size=img_size, num_cls=num_cls)
 
@@ -155,6 +156,7 @@ if __name__ == '__main__':
     for name, param in state_dict.items():
 
         if name in own_state.keys():
+            print(name)
             own_state[name].copy_(param)
         else:
             print('skiping: ' + name)

@@ -27,7 +27,7 @@ def poisson_gen(inp, rescale_fac=2.0):
 
 
 class SResnet(nn.Module):
-    def __init__(self, n, nFilters, num_steps, leak_mem=0.95, img_size=32,  num_cls=10, poisson_gen=False):
+    def __init__(self, n, nFilters, num_steps, leak_mem=0.95, img_size=32,  num_cls=10, boosting=False, poisson_gen=False):
         super(SResnet, self).__init__()
 
         self.n = n
@@ -38,6 +38,10 @@ class SResnet(nn.Module):
         self.leak_mem = leak_mem
         self.batch_num = self.num_steps
         self.poisson_gen = poisson_gen
+        if boosting:
+            self.boost = nn.AvgPool1d(10, 10)
+        else:
+            self.boost = False
 
         print(">>>>>>>>>>>>>>>>>>> S-ResNet >>>>>>>>>>>>>>>>>>>>>>")
 
@@ -78,7 +82,10 @@ class SResnet(nn.Module):
 
         self.pool2 = nn.AdaptiveAvgPool2d((1,1))
 
-        self.fc = nn.Linear(self.nFilters*4, self.num_cls, bias=bias_flag)
+        if self.boost:
+            self.fc = nn.Linear(self.nFilters * 4, self.num_cls * 10, bias=bias_flag)
+        else:
+            self.fc = nn.Linear(self.nFilters*4, self.num_cls, bias=bias_flag)
 
         self.conv1x1_list = nn.ModuleList([self.conv_resize_1, self.conv_resize_2])
 
@@ -145,7 +152,10 @@ class SResnet(nn.Module):
             out_prev = out_prev.reshape(batch_size, -1)
 
             #  Accumulate voltage in the last layer
-            mem_fc = mem_fc + self.fc(out_prev)
+            if self.boost:
+                mem_fc = mem_fc + self.boost(self.fc(out_prev).unsqueeze(1)).squeeze(1)
+            else:
+                mem_fc = mem_fc + self.fc(out_prev)
 
         out_voltage = mem_fc / self.num_steps
 

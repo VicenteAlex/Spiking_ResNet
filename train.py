@@ -31,6 +31,7 @@ if __name__ == '__main__':
     parser.add_argument('--arch',                  default='sresnet',   type=str, help='[sresnet, sresnet_nm]')
     parser.add_argument('--n',                     default=6, type=int, help='Depth scaling of the S-ResNet')
     parser.add_argument('--nFilters',              default=32, type=int, help='Width scaling of the S-ResNet')
+    parser.add_argument('--boosting',              default=False, action='store_true', help='Use boosting layer')
     parser.add_argument('--dataset',               default='cifar100',   type=str,
                         help='[cifar10, cifar100, cifar10dvs]')
     parser.add_argument('--num_epochs',            default=70,       type=int,   help='Number of epochs')
@@ -171,7 +172,7 @@ if __name__ == '__main__':
     # Set up network architecture and optimizer
     if args.arch == 'sresnet':
         model = SResnet(n=args.n, nFilters=args.nFilters, num_steps=num_steps, leak_mem=leak_mem, img_size=img_size, num_cls=num_cls,
-                               poisson_gen=args.poisson_gen)
+                        boosting=args.boosting, poisson_gen=args.poisson_gen)
     elif args.arch == 'sresnet_nm':
         model = SResnetNM(n=args.n, nFilters=args.nFilters, num_steps=num_steps, leak_mem=leak_mem, img_size=img_size, num_cls=num_cls)
 
