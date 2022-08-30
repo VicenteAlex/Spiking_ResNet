@@ -13,7 +13,7 @@ Cite as:
 	year={2022}
     }
 
-###Pre-trained models can be downloaded [here](https://figshare.com/articles/software/Pretrained_models_-_Keys_to_Accurate_Feature_Extraction_Using_Residual_Spiking_Neural_Networks/20712535)
+### Pre-trained models can be downloaded [here](https://figshare.com/articles/software/Pretrained_models_-_Keys_to_Accurate_Feature_Extraction_Using_Residual_Spiking_Neural_Networks/20712535)
 
 ***
 
