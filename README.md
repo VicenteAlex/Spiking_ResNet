@@ -1,8 +1,22 @@
 # Spiking ResNet
-***
 Official implementation of the paper [Keys to Accurate Feature Extraction Using Residual Spiking Neural Networks](https://arxiv.org/abs/2111.05955)
 
 Accepted in **IOP Neuromorphic Computing and Engineering**
+
+Cite as: 
+
+    @article{vicentesola2022keys,
+	author={Vicente Sola, Alex and Manna, Davide Liberato and Kirkland, Paul and Di Caterina, Gaetano and Bihl, Trevor J},
+	title={Keys to accurate feature extraction using residual spiking neural networks},
+	journal={Neuromorphic Computing and Engineering },
+	url={http://iopscience.iop.org/article/10.1088/2634-4386/ac8bef},
+	year={2022}
+    }
+
+###Pre-trained models can be downloaded [here](https://figshare.com/articles/software/Pretrained_models_-_Keys_to_Accurate_Feature_Extraction_Using_Residual_Spiking_Neural_Networks/20712535)
+
+***
+
 ### Installation
 _Code tested in Python 3.8.10 and PyTorch 1.8.1_
 
