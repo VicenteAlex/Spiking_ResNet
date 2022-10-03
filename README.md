@@ -1,5 +1,5 @@
 # Spiking ResNet
-Official implementation of the paper [Keys to Accurate Feature Extraction Using Residual Spiking Neural Networks](https://arxiv.org/abs/2111.05955)
+Official implementation of the paper [Keys to Accurate Feature Extraction Using Residual Spiking Neural Networks](https://iopscience.iop.org/article/10.1088/2634-4386/ac8bef)
 
 Accepted in **IOP Neuromorphic Computing and Engineering**
 
