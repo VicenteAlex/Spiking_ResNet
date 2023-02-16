@@ -35,15 +35,15 @@ Windows:\
 ### Train S-ResNet
 - CIFAR-10:
 ```
-python train.py --num_steps 50 --lr 0.026844 --leak_mem 0.8744 --arch 'resnet_n' --dataset  'cifar10' --num_workers 4 --num_epochs 70
+python train.py --num_steps 50 --lr 0.026844 --leak_mem 0.8744 --arch 'sresnet' --dataset  'cifar10' --num_workers 4 --num_epochs 70
 ```
 - CIFAR-100:
 ```
-python train.py --num_steps 50 --lr 0.026844 --leak_mem 0.8744 --arch 'resnet_n' --dataset  'cifar100' --num_workers 4 --num_epochs 70
+python train.py --num_steps 50 --lr 0.026844 --leak_mem 0.8744 --arch 'sresnet' --dataset  'cifar100' --num_workers 4 --num_epochs 70
 ```
 - DVS-CIFAR10:
 ```
-    python train.py --num_steps 50 --lr 0.026844 --leak_mem 0.8744 --arch 'resnet_n_nm' --dataset  'cifar10dvs' --num_workers 4 --num_epochs 70
+    python train.py --num_steps 50 --lr 0.026844 --leak_mem 0.8744 --arch 'sresnet_nm' --dataset  'cifar10dvs' --num_workers 4 --num_epochs 70
 ```
  ###### Other commands:
 Set the batch size with the flag: `--batch_size` (use the biggest batch size your GPU can support)
