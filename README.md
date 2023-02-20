@@ -58,6 +58,8 @@ If you want to fine tune a checkpoint trained with a different dataset, use the 
 This will start the epoch count from 0, reset the accuracy history and skip the loading of the Fully
 Connected layer and Conv1.
 
+To use the boosting strategy in the final layer use the flag `--boosting`. Note that if a checkpoint was trained using this strategy, the flag will need to be present when we load it for further training or testing. _The pre-trained network in CIFAR-10 "cifar10_sresnet-boost.pth.tar" needs this flag._ 
+
 ### Test S-ResNet
 For testing, the location of the saved model is passed with `--model_path` alongside the architecture flags
 such as `--arch` `--num_steps`. Remember to keep the same architecture and parameters that you used for training.
